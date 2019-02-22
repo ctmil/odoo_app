@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap/scss/bootstrap-reboot';
+@import '~bootstrap/scss/bootstrap-grid';
+
+html, body { height: 100vh; overflow-x:hidden; }
+body {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background: #74516a;
+    box-shadow: inset 0 0 40px #2e262b;
+    height:100vh;
+    margin:0px;
+    padding:0px;
+    overflow-x:hidden;
+    color:#fff;
+}

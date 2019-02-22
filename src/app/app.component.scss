@@ -1,0 +1,37 @@
+.odoo-header {
+    padding:30px 0 0 0;
+    margin-bottom:50px;
+}
+.odoo-header img {
+    margin: 0 auto;
+    display: block;
+}
+.box-responsive {
+    width: 100%;
+    box-sizing: border-box;
+    margin:0 auto;
+    font-size: 14px;
+}
+iframe {
+    display: block; 
+    background: #74516a;
+    border: none;
+    height: 100vh;
+    width: 100vw;
+}
+.alert {
+    margin-top:15px;
+}
+.absolute {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -50px 0 0 -50px;
+}
+.icon {
+    position:absolute;
+    top:0;
+    right:0;
+    text-align:right;
+    opacity:0.7;
+}
