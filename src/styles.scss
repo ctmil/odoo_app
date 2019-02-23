@@ -2,11 +2,10 @@
 @import '~bootstrap/scss/bootstrap-reboot';
 @import '~bootstrap/scss/bootstrap-grid';
 
-html, body { height: 100vh; overflow-x:hidden; }
+html, body { overflow-x:hidden; }
 body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
     background: #74516a;
-    box-shadow: inset 0 0 40px #2e262b;
     height:100vh;
     margin:0px;
     padding:0px;

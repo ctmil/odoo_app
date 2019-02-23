@@ -38,8 +38,7 @@ export class AppComponent implements OnInit {
           this.url = this.sanitizer.bypassSecurityTrustResourceUrl(server_url + '/web/app?db=' + db + '&login=' + user +
           '&password=' + pass);
         } else {
-          this.url = this.sanitizer.bypassSecurityTrustResourceUrl(server_url + '/web/app?login=' + user +
-          '&password=' + pass);
+          this.url = this.sanitizer.bypassSecurityTrustResourceUrl(server_url + '/web/app?login=' + user + '&password=' + pass);
         }
         this.odoo_login = false;
         this.is_loader = true;
