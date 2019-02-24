@@ -11,6 +11,11 @@ export class AppComponent implements OnInit {
   @ViewChild('odoo_db') odoo_db: ElementRef;
   @ViewChild('odoo_user') odoo_user: ElementRef;
   @ViewChild('odoo_pass') odoo_pass: ElementRef;
+  public odoo_url_value = '';
+  public odoo_db_value = '';
+  public odoo_user_value = '';
+  public odoo_pass_value = '';
+
   public url: SafeUrl;
   public odoo_login = true;
   public odoo_connect = false;
@@ -22,11 +27,16 @@ export class AppComponent implements OnInit {
 
   public ngOnInit(): void {}
 
-  public logUrl(): void {
+  public logIn(): void {
     const server_url = this.odoo_url.nativeElement.value;
     const db = this.odoo_db.nativeElement.value;
     const user = this.odoo_user.nativeElement.value;
     const pass = this.odoo_pass.nativeElement.value;
+
+    this.odoo_url_value = server_url;
+    this.odoo_db_value = db;
+    this.odoo_user_value = user;
+    this.odoo_pass_value = pass;
 
     const regex = new RegExp('(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\
     .[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\
@@ -51,7 +61,10 @@ export class AppComponent implements OnInit {
     }
   }
 
-  public odooLogComplete(): void {
+  public logOut(): void {
     this.is_loader = false;
+    this.odoo_connect = false;
+    this.odoo_login = true;
+    this.url = '';
   }
 }
