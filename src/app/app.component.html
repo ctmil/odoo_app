@@ -13,8 +13,9 @@
 <section class="container" *ngIf="odoo_login">
   <div class="row">
     <div class="col-12 text-center">
+      <form>
         <mat-form-field class="box-responsive">
-          <input matInput placeholder="Odoo Server URL" [value]="odoo_url_value" #odoo_url>
+          <input matInput placeholder="Odoo Server URL" [value]="odoo_url_value" required #odoo_url>
           <mat-icon class="icon" color="primary" inline="true">insert_link</mat-icon>
         </mat-form-field>
         <mat-form-field class="box-responsive">
@@ -22,20 +23,18 @@
           <mat-icon class="icon" color="primary" inline="true">cloud</mat-icon>
         </mat-form-field>
         <mat-form-field class="box-responsive">
-          <input matInput placeholder="Email" [value]="odoo_user_value" #odoo_user>
+          <input matInput placeholder="Email" [value]="odoo_user_value" required #odoo_user>
           <mat-icon class="icon" color="primary" inline="true">email</mat-icon>
         </mat-form-field>
         <mat-form-field class="box-responsive">
-          <input matInput type="password" placeholder="Password" [value]="odoo_pass_value" #odoo_pass>
+          <input matInput type="password" placeholder="Password" [value]="odoo_pass_value" required #odoo_pass>
           <mat-icon class="icon" color="primary" inline="true">lock</mat-icon>
         </mat-form-field>
+        <button mat-raised-button color="primary" (click)="logIn()">Log Odoo Server</button>
+      </form>
     </div>
   </div>
-  <div class="row">
-      <div class="col-12 text-center box-responsive">
-          <button mat-raised-button color="primary" (click)="logIn()">Log Odoo Server</button>
-      </div>
-  </div>
+  
   <div class="row" *ngIf="alert != ''">
     <div class="col-12 alert alert-danger box-responsive" role="alert">
       {{alert}}

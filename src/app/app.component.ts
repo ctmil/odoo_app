@@ -64,12 +64,7 @@ export class AppComponent implements OnInit {
     window.localStorage.setItem('user', user);
     window.localStorage.setItem('pass', pass);
 
-    const regex = new RegExp('(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\
-    .[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\
-    .[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,})');
-
-    if (server_url !== '') {
-      if (server_url.match(regex)) {
+    if (this.validate()) {
         if (db !== '') {
           this.url = this.sanitizer.bypassSecurityTrustResourceUrl(server_url + '/web/app?db=' + db + '&login=' + user +
           '&password=' + pass);
@@ -79,11 +74,6 @@ export class AppComponent implements OnInit {
         this.odoo_login = false;
         this.is_loader = true;
         this.odoo_connect = true;
-      } else {
-        this.alert = 'You have to insert a valid URL';
-      }
-    } else {
-      this.alert = 'You have to insert an URL';
     }
   }
 
@@ -92,5 +82,27 @@ export class AppComponent implements OnInit {
     this.odoo_connect = false;
     this.odoo_login = true;
     this.url = '';
+  }
+
+  public validate(): boolean {
+    this.alert = '';
+    const server_url = this.odoo_url.nativeElement.value;
+    const db = this.odoo_db.nativeElement.value;
+    const user = this.odoo_user.nativeElement.value;
+    const pass = this.odoo_pass.nativeElement.value;
+
+    const regex = new RegExp('(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\
+    .[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\
+    .[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,})');
+
+    if (server_url === '' || user === '' || pass === '') {
+      this.alert = 'Data with (*) is required';
+      return false;
+    } else if (!server_url.match(regex)) {
+      this.alert = 'Need to be a valid URL';
+      return false;
+    } else {
+      return true;
+    }
   }
 }

@@ -5,7 +5,7 @@
 $candy-app-primary: mat-palette($mat-teal, A200);
 $candy-app-accent:  mat-palette($mat-purple, A200);
 
-$candy-app-warn:    mat-palette($mat-orange, 700);
+$candy-app-warn:    mat-palette($mat-red, A100);
 
 $candy-app-theme: mat-dark-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);
 
