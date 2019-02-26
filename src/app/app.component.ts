@@ -1,6 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
+declare var navigator: any;
+declare var window: any;
+declare var cordova: any;
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -25,7 +29,24 @@ export class AppComponent implements OnInit {
 
   constructor(private sanitizer: DomSanitizer) {}
 
-  public ngOnInit(): void {}
+  public ngOnInit(): void {
+    document.addEventListener('deviceready', this.onDeviceReady, false);
+
+    this.logData();
+  }
+
+  public onDeviceReady(): void {
+    console.log('Device is Ready');
+
+    this.logData();
+  }
+
+  public logData(): void {
+    this.odoo_url_value = window.localStorage.getItem('url');
+    this.odoo_db_value = window.localStorage.getItem('db');
+    this.odoo_user_value = window.localStorage.getItem('user');
+    this.odoo_pass_value = window.localStorage.getItem('pass');
+  }
 
   public logIn(): void {
     const server_url = this.odoo_url.nativeElement.value;
@@ -37,6 +58,11 @@ export class AppComponent implements OnInit {
     this.odoo_db_value = db;
     this.odoo_user_value = user;
     this.odoo_pass_value = pass;
+
+    window.localStorage.setItem('url', server_url);
+    window.localStorage.setItem('db', db);
+    window.localStorage.setItem('user', user);
+    window.localStorage.setItem('pass', pass);
 
     const regex = new RegExp('(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\
     .[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\
