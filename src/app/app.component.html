@@ -47,9 +47,6 @@
 </section>
 
 <section *ngIf="odoo_connect">
-    <div style="width:100%;height:100vh;overflow-y:scroll !important;-webkit-overflow-scrolling:touch !important;">
-      <iframe [src]="url" frameborder="0" scrolling="yes" style="width:100%;height:100%"></iframe>
-    </div>
-    <button class="fixed_button" mat-raised-button (click)="logOut()"><mat-icon color="warn">exit_to_app</mat-icon></button>
+  <app-odoo-player [url]="url" (log)="logOut()"></app-odoo-player>
 </section>
 

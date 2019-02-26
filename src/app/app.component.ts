@@ -23,7 +23,6 @@ export class AppComponent implements OnInit {
   public url: SafeUrl;
   public odoo_login = true;
   public odoo_connect = false;
-  public is_loader = false;
 
   public alert = '';
 
@@ -72,13 +71,11 @@ export class AppComponent implements OnInit {
           this.url = this.sanitizer.bypassSecurityTrustResourceUrl(server_url + '/web/app?login=' + user + '&password=' + pass);
         }
         this.odoo_login = false;
-        this.is_loader = true;
         this.odoo_connect = true;
     }
   }
 
   public logOut(): void {
-    this.is_loader = false;
     this.odoo_connect = false;
     this.odoo_login = true;
     this.url = '';
