@@ -9,6 +9,9 @@
   "installed_plugins": {
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.moldeointeractive.odooapp"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.moldeointeractive.odooapp"
     }
   },
   "dependent_plugins": {}
