@@ -13,7 +13,7 @@
 <section class="container" *ngIf="odoo_login">
   <div class="row">
     <div class="col-12 text-center">
-      <form>
+      <form (submit)="validate()">
         <mat-form-field class="box-responsive">
           <input matInput placeholder="Odoo Server URL" [value]="odoo_url_value" required #odoo_url>
           <mat-icon class="icon" color="primary" inline="true">insert_link</mat-icon>
@@ -30,9 +30,14 @@
           <input matInput type="password" placeholder="Password" [value]="odoo_pass_value" required #odoo_pass>
           <mat-icon class="icon" color="primary" inline="true">lock</mat-icon>
         </mat-form-field>
-        <button mat-raised-button color="primary" (click)="logIn()">Log Odoo Server</button>
+        <button mat-raised-button color="primary">Log Odoo Server</button>
       </form>
     </div>
+  </div>
+
+  <div class="row" *ngIf="loading">
+    <mat-progress-spinner class="spinner" color="primary" mode="indeterminate" diameter="60">
+    </mat-progress-spinner>
   </div>
   
   <div class="row" *ngIf="alert != ''">
@@ -42,7 +47,10 @@
   </div>
 
   <footer class="pcp text-center">
-        <span>&#112;&#111;&#119;&#101;&#114;&#101;&#100;&#032;&#098;&#121;&#032;&#077;&#111;&#108;&#100;&#101;&#111;&#032;&#073;&#110;&#116;&#101;&#114;&#097;&#099;&#116;&#105;&#118;&#101;</span>
+        <span>&#112;&#111;&#119;&#101;&#114;&#101;&#100;
+          &#032;&#098;&#121;
+          &#032;&#077;&#111;&#108;&#100;&#101;&#111;
+          &#032;&#073;&#110;&#116;&#101;&#114;&#097;&#099;&#116;&#105;&#118;&#101;</span>
   </footer>
 </section>
 

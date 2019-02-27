@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { JsonService } from './services/json.service';
 
 declare var navigator: any;
 declare var window: any;
@@ -24,9 +25,11 @@ export class AppComponent implements OnInit {
   public odoo_login = true;
   public odoo_connect = false;
 
+  public loading = false;
+
   public alert = '';
 
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(private sanitizer: DomSanitizer, private json: JsonService) {}
 
   public ngOnInit(): void {
     document.addEventListener('deviceready', this.onDeviceReady, false);
@@ -63,16 +66,14 @@ export class AppComponent implements OnInit {
     window.localStorage.setItem('user', user);
     window.localStorage.setItem('pass', pass);
 
-    if (this.validate()) {
-        if (db !== '') {
-          this.url = this.sanitizer.bypassSecurityTrustResourceUrl(server_url + '/web/app?db=' + db + '&login=' + user +
-          '&password=' + pass);
-        } else {
-          this.url = this.sanitizer.bypassSecurityTrustResourceUrl(server_url + '/web/app?login=' + user + '&password=' + pass);
-        }
-        this.odoo_login = false;
-        this.odoo_connect = true;
+    if (db !== '') {
+      this.url = this.sanitizer.bypassSecurityTrustResourceUrl(server_url + '/web/app?db=' + db + '&login=' + user +
+      '&password=' + pass);
+    } else {
+      this.url = this.sanitizer.bypassSecurityTrustResourceUrl(server_url + '/web/app?login=' + user + '&password=' + pass);
     }
+    this.odoo_login = false;
+    this.odoo_connect = true;
   }
 
   public logOut(): void {
@@ -81,8 +82,9 @@ export class AppComponent implements OnInit {
     this.url = '';
   }
 
-  public validate(): boolean {
+  public validate(): void {
     this.alert = '';
+    this.loading = true;
     const server_url = this.odoo_url.nativeElement.value;
     const db = this.odoo_db.nativeElement.value;
     const user = this.odoo_user.nativeElement.value;
@@ -92,14 +94,24 @@ export class AppComponent implements OnInit {
     .[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\
     .[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,})');
 
-    if (server_url === '' || user === '' || pass === '') {
-      this.alert = 'Data with (*) is required';
-      return false;
-    } else if (!server_url.match(regex)) {
-      this.alert = 'Need to be a valid URL';
-      return false;
-    } else {
-      return true;
-    }
+    this.json.getOdooData(server_url).subscribe((res: any) => {
+      this.loading = false;
+
+      if (server_url === '' || user === '' || pass === '') {
+        this.alert = 'Data with (*) is required';
+      } else if (!server_url.match(regex)) {
+        this.alert = 'Need to be a valid URL';
+      } else if (res.status !== 'OK') {
+        this.alert = 'Odoo App Connector has Errors';
+      } else {
+        this.logIn();
+      }
+    },
+    (err) => {
+      this.loading = false;
+
+      console.log(err);
+      this.alert = 'Odoo Server need Oddo App Connector Module';
+    });
   }
 }
