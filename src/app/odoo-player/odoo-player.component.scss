@@ -9,7 +9,8 @@ iframe{
 }
 .fixed_button {
     position:fixed;
-    bottom: -2px;
-    left: -2px;
+    bottom: 10px;
+    left: -25px;
     z-index:99;
+    opacity: 0.9;
 }

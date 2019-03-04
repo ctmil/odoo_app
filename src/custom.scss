@@ -3,7 +3,7 @@
 @include mat-core();
 
 $candy-app-primary: mat-palette($mat-teal, A200);
-$candy-app-accent:  mat-palette($mat-purple, A200);
+$candy-app-accent:  mat-palette($mat-indigo, 300);
 
 $candy-app-warn:    mat-palette($mat-red, A100);
 
