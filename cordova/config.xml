@@ -25,5 +25,5 @@
     </platform>
     <preference name="Orientation" value="portrait" />
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
-    <engine name="android" spec="^7.1.4" />
+    <engine name="android" spec="~7.1.4" />
 </widget>
