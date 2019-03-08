@@ -25,6 +25,8 @@ export class AppComponent implements OnInit {
   public odoo_login = true;
   public odoo_connect = false;
 
+  public network = true;
+
   public loading = false;
 
   public alert = '';
@@ -33,14 +35,24 @@ export class AppComponent implements OnInit {
 
   public ngOnInit(): void {
     document.addEventListener('deviceready', this.onDeviceReady, false);
+    document.addEventListener('offline', this.onOffline, false);
+    document.addEventListener('online', this.onOnline, false);
 
     this.logData();
   }
 
   public onDeviceReady(): void {
     console.log('Device is Ready');
+  }
 
-    this.logData();
+  public onOffline(): void {
+    console.log('Device is Offline');
+    this.network = false;
+  }
+
+  public onOnline(): void {
+    console.log('Device is Online');
+    this.network = true;
   }
 
   public logData(): void {
@@ -94,24 +106,31 @@ export class AppComponent implements OnInit {
     .[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\
     .[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,})');
 
-    this.json.getOdooData(server_url).subscribe((res: any) => {
-      this.loading = false;
+    if (this.network) {
+      this.json.getOdooData(server_url).subscribe((res: any) => {
+        this.loading = false;
 
-      if (server_url === '' || user === '' || pass === '') {
-        this.alert = 'Data with (*) is required';
-      } else if (!server_url.match(regex)) {
-        this.alert = 'Need to be a valid URL';
-      } else if (res.status !== 'OK') {
-        this.alert = 'Odoo App Connector has Errors';
-      } else {
-        this.logIn();
-      }
-    },
-    (err) => {
-      this.loading = false;
+        if (server_url === '' || user === '' || pass === '') {
+          this.alert = 'Data with (*) is required';
+        } else if (!server_url.match(regex)) {
+          this.alert = 'Need to be a valid URL';
+        } else if (!this.network) {
+          this.alert = 'You need to be connected to Internet';
+        } else if (res.status !== 'OK') {
+          this.alert = 'Odoo App Connector has Errors';
+        } else {
+          this.logIn();
+        }
+      },
+      (err) => {
+        this.loading = false;
 
-      console.log(err);
-      this.alert = 'Odoo Server need Oddo App Connector Module';
-    });
+        console.log(err);
+        this.alert = 'Odoo Server need Oddo App Connector Module';
+      });
+    } else {
+      this.loading = false;
+      this.alert = 'You need to be connected to Internet';
+    }
   }
 }
