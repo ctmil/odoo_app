@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { JsonService } from './services/json.service';
 
@@ -31,28 +31,28 @@ export class AppComponent implements OnInit {
 
   public alert = '';
 
-  constructor(private sanitizer: DomSanitizer, private json: JsonService) {}
+  constructor(private sanitizer: DomSanitizer, private renderer: Renderer2, private json: JsonService) {}
 
   public ngOnInit(): void {
-    document.addEventListener('deviceready', this.onDeviceReady, false);
-    document.addEventListener('offline', this.onOffline, false);
-    document.addEventListener('online', this.onOnline, false);
+    const this_ = this;
 
-    this.logData();
-  }
+    this.renderer.listen('document', 'deviceready', () => { // DeviceReady listener
+      console.log('Device is Ready');
+      this_.logData();
+    });
 
-  public onDeviceReady(): void {
-    console.log('Device is Ready');
-  }
+    this.renderer.listen('document', 'offline', () => { // Check OffLine listener
+      console.log('Device is Offline');
+      console.log(navigator.connection.type);
+      this_.network = false;
+    });
 
-  public onOffline(): void {
-    console.log('Device is Offline');
-    this.network = false;
-  }
+    this.renderer.listen('document', 'online', () => {  // Check OnLine listener
+      console.log('Device is Online');
+      console.log(navigator.connection.type);
+      this_.network = true;
+    });
 
-  public onOnline(): void {
-    console.log('Device is Online');
-    this.network = true;
   }
 
   public logData(): void {
