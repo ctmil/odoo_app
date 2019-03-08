@@ -5,6 +5,8 @@
     "description": "Odoo App for Community version.",
     "main": "index.js",
     "scripts": {
+	"build:android": "cordova-icon && cordova-splash && cordova build android",
+	"build:android_debug": "cordova build android --debug",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "Moldeo Interactive",
