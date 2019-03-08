@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { JsonService } from './services/json.service';
+import { timer } from 'rxjs';
 
 declare var navigator: any;
 declare var window: any;
@@ -24,6 +25,7 @@ export class AppComponent implements OnInit {
   public url: SafeUrl;
   public odoo_login = true;
   public odoo_connect = false;
+  public odoo_view = true;
 
   public network = true;
 
@@ -53,6 +55,7 @@ export class AppComponent implements OnInit {
       this_.network = true;
     });
 
+    this.logData();
   }
 
   public logData(): void {
@@ -63,6 +66,8 @@ export class AppComponent implements OnInit {
   }
 
   public logIn(): void {
+    this.loading = true;
+
     const server_url = this.odoo_url.nativeElement.value;
     const db = this.odoo_db.nativeElement.value;
     const user = this.odoo_user.nativeElement.value;
@@ -84,8 +89,16 @@ export class AppComponent implements OnInit {
     } else {
       this.url = this.sanitizer.bypassSecurityTrustResourceUrl(server_url + '/web/app?login=' + user + '&password=' + pass);
     }
-    this.odoo_login = false;
+
     this.odoo_connect = true;
+
+    const secondsCounter = timer(3000); // Pre-Loading
+
+    secondsCounter.subscribe( () => {
+      this.loading = false;
+      this.odoo_login = false;
+      this.odoo_view = false;
+    });
   }
 
   public logOut(): void {

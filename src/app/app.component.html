@@ -54,7 +54,7 @@
   </footer>
 </section>
 
-<section *ngIf="odoo_connect">
+<section *ngIf="odoo_connect" [hidden]="odoo_view">
   <app-odoo-player [url]="url" (log)="logOut()"></app-odoo-player>
 </section>
 
