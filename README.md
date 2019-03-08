@@ -16,6 +16,6 @@ Run `npm run build:aot` to build the optimized project on Cordova folder.
 
 ## Requirements
 
-It requires odoo_app_connector module installed and configured on Odoo Online Server.
+It requires [odoo_app_connector](https://github.com/ctmil/odoo_app_connector) module installed and configured on Odoo Online Server.
 
 Contact: info@moldeointeractive.com.ar
