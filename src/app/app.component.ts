@@ -115,18 +115,12 @@ export class AppComponent implements OnInit {
     const user = this.odoo_user.nativeElement.value;
     const pass = this.odoo_pass.nativeElement.value;
 
-    const regex = new RegExp('(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\
-    .[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\
-    .[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,})');
-
     if (this.network) {
       this.json.getOdooData(server_url).subscribe((res: any) => {
         this.loading = false;
 
-        if (server_url === '' || user === '' || pass === '') {
+        if (server_url === '' || user === '' || pass === '' || db === '') {
           this.alert = 'Data with (*) is required';
-        } else if (!server_url.match(regex)) {
-          this.alert = 'Need to be a valid URL';
         } else if (!this.network) {
           this.alert = 'You need to be connected to Internet';
         } else if (res.status !== 'OK') {
