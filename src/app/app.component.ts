@@ -85,9 +85,9 @@ export class AppComponent implements OnInit {
 
     if (db !== '') {
       this.url = this.sanitizer.bypassSecurityTrustResourceUrl(server_url + '/web/app?db=' + db + '&login=' + user +
-      '&password=' + pass);
+      '&password=' + pass + '&debug=false');
     } else {
-      this.url = this.sanitizer.bypassSecurityTrustResourceUrl(server_url + '/web/app?login=' + user + '&password=' + pass);
+      this.url = this.sanitizer.bypassSecurityTrustResourceUrl(server_url + '/web/app?login=' + user + '&password=' + pass );
     }
 
     this.odoo_connect = true;

@@ -55,6 +55,6 @@
 </section>
 
 <section *ngIf="odoo_connect" [hidden]="odoo_view">
-  <app-odoo-player [url]="url" (log)="logOut()"></app-odoo-player>
+  <app-odoo-player [url]="url" [server]="odoo_url_value" [db]="odoo_db_value" [user]="odoo_user_value" [pass]="odoo_pass_value" (log)="logOut()"></app-odoo-player>
 </section>
 
