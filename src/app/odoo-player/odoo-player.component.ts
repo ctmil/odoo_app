@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-odoo-player',
@@ -10,6 +10,7 @@ export class OdooPlayerComponent implements OnInit {
   // tslint:disable-next-line: no-input-rename
   @Input('url') url = '';
   @Output() log = new EventEmitter();
+  @ViewChild('iframe') iframe = ElementRef;
 
   constructor() { }
 
@@ -18,5 +19,7 @@ export class OdooPlayerComponent implements OnInit {
   public logOut(): void {
     this.log.emit();
   }
+
+  public devMode(): void {}
 
 }
