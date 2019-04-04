@@ -1,6 +1,6 @@
 {
-    "name": "odoo-app",
-    "displayName": "Odoo App",
+    "name": "odoo-app-kachito",
+    "displayName": "Kachito App",
     "version": "1.0.0",
     "description": "Odoo App for Community version.",
     "main": "index.js",
