@@ -1,5 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, Renderer2 } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+
+declare var navigator: any;
 
 @Component({
   selector: 'app-odoo-player',
@@ -20,9 +22,19 @@ export class OdooPlayerComponent implements OnInit {
   @Input('pass') pass = '';
   @Output() log = new EventEmitter();
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(private sanitizer: DomSanitizer, private renderer: Renderer2) { }
 
-  public ngOnInit(): void {}
+  public ngOnInit(): void {
+    this.renderer.listen('document', 'offline', () => { // Check OffLine listener
+      console.log('Device is Offline - Odoo player');
+      console.log(navigator.connection.type);
+    });
+
+    this.renderer.listen('document', 'online', () => {  // Check OnLine listener
+      console.log('Device is Online - Odoo player');
+      console.log(navigator.connection.type);
+    });
+  }
 
   public logOut(): void {
     this.log.emit();
