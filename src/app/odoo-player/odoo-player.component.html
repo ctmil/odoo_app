@@ -1,5 +1,10 @@
-<div class="iframe-container">
+<div class="iframe-container" [ngClass]="{'no-network-iframe': network==false, 'network-iframe':network==true}">
   <iframe #iframe [src]="url" frameborder="0" scrolling="yes"></iframe>
 </div>
+
+<div class="msg" *ngIf="!network">
+  <mat-icon>network_check</mat-icon><span>No Network</span>
+</div>
+
 <button mat-fab class="fixed_button exit_button" color="accent" mat-raised-button (click)="logOut()" title="Log out"><mat-icon>exit_to_app</mat-icon></button>
 <button mat-fab class="fixed_button bug_button" color="accent" mat-raised-button (click)="devMode()" title="Go developer mode"><mat-icon>bug_report</mat-icon></button>
