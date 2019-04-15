@@ -83,12 +83,9 @@ export class AppComponent implements OnInit {
     window.localStorage.setItem('user', user);
     window.localStorage.setItem('pass', pass);
 
-    if (db !== '') {
-      this.url = this.sanitizer.bypassSecurityTrustResourceUrl(server_url + '/web/app?db=' + db + '&login=' + user +
-      '&password=' + pass + '&debug=false');
-    } else {
-      this.url = this.sanitizer.bypassSecurityTrustResourceUrl(server_url + '/web/app?login=' + user + '&password=' + pass );
-    }
+    // URL - Forced use of DB
+    this.url = this.sanitizer.bypassSecurityTrustResourceUrl(server_url + '/web/app?db=' + db + '&login=' + user +
+    '&password=' + pass + '&debug=false');
 
     this.odoo_connect = true;
 
