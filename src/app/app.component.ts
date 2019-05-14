@@ -130,7 +130,8 @@ export class AppComponent implements OnInit {
         this.loading = false;
 
         console.log(err);
-        if (server_url.indexOf('http://') === -1 || server_url.indexOf('https://') === -1) {
+
+        if (server_url.indexOf('http://') === -1 && server_url.indexOf('https://') === -1) {
           this.alert = 'Server URL need auth (http or https)';
         } else {
           this.alert = 'Odoo Server need Oddo App Connector Module';
