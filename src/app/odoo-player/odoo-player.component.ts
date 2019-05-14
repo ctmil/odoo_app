@@ -82,7 +82,7 @@ export class OdooPlayerComponent implements OnInit {
       url: server_url + '/xmlrpc/2/object',
       methodName: 'execute_kw',
       crossDomain: true,
-      params: [db, uid, pass, 'mail.channel', 'search_read', [ [] ], {'fields': ['message_unread', 'display_name', 'message_ids']}],
+      params: [db, uid, pass, 'mail.channel', 'search_read', [ [] ], {'fields': ['message_unread', 'message_ids']}],
       success: function(response: any, status: any, jqXHR: any) {
         console.log(response[0]);
         for (let index = 0; index < response[0].length; index++) {
@@ -103,7 +103,7 @@ export class OdooPlayerComponent implements OnInit {
       url: server_url + '/xmlrpc/2/object',
       methodName: 'execute_kw',
       crossDomain: true,
-      params: [db, uid, pass, 'mail.message', 'search_read', [ [['id', '=', msg_id]] ], {}],
+      params: [db, uid, pass, 'mail.message', 'search_read', [ [['id', '=', msg_id]] ], {'fields': ['body', 'author_id', 'display_name']}],
       success: function(response: any, status: any, jqXHR: any) {
         console.log(response);
       },
