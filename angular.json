@@ -30,7 +30,10 @@
               "src/custom.scss",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+	      "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/jquery-xmlrpc/jquery.xmlrpc.min.js"
+	    ]
           },
           "configurations": {
             "production": {

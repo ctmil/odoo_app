@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter, Renderer2 } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
+declare var jquery: any;
+declare var $: any;
 declare var navigator: any;
 
 @Component({
@@ -22,23 +24,71 @@ export class OdooPlayerComponent implements OnInit {
   @Input('pass') pass = '';
   @Output() log = new EventEmitter();
 
+  public uid = 0;
   public network = true;
 
   constructor(private sanitizer: DomSanitizer, private renderer: Renderer2) { }
 
   public ngOnInit(): void {
-    const this_ = this;
-
     this.renderer.listen('document', 'offline', () => { // Check OffLine listener
       console.log('Device is Offline - Odoo player');
       console.log(navigator.connection.type);
-      this_.network = false;
+      this.network = false;
     });
 
     this.renderer.listen('document', 'online', () => {  // Check OnLine listener
       console.log('Device is Online - Odoo player');
       console.log(navigator.connection.type);
-      this_.network = true;
+      this.network = true;
+    });
+
+    this.odooConnect(this.server, this.db, this.user, this.pass);
+  }
+
+  /* XML-RCP Odoo Connect */
+  public odooConnect(server: string, db: string, user: string, pass: string): void {
+    const this_ = this;
+    const forcedUserValue = $.xmlrpc.force('string', user);
+    const forcedPasswordValue = $.xmlrpc.force('string', pass);
+    const forcedDbNameValue = $.xmlrpc.force('string', db);
+
+    $.xmlrpc({
+      url: this_.server + '/xmlrpc/common',
+      methodName: 'login',
+      dataType: 'xmlrpc',
+      crossDomain: true,
+      params: [forcedDbNameValue, forcedUserValue, forcedPasswordValue],
+      success: function(response: any, status: any, jqXHR: any) {
+        console.log(response + ' - ' + status);
+        if (response[0] !== false) {
+          this_.uid = response[0];
+          this_.getMsg(this_.server, this_.db, this_.user, this_.pass, this_.uid);
+        } else {
+          this_.logOut();
+        }
+      },
+      error: function(jqXHR: any, status: any, error: any) {
+        console.log('Err: ' + jqXHR + ' - ' + status + '-' + error);
+        this_.logOut();
+      }
+    });
+  }
+
+  /* Get Msg Information */
+  public getMsg(server_url: string, db: string, user: string, pass: string, uid: number): void {
+    const this_ = this;
+
+    $.xmlrpc({
+      url: server_url + '/xmlrpc/2/object',
+      methodName: 'execute_kw',
+      crossDomain: true,
+      params: [db, uid, pass, 'mail.channel', 'search_read', [ [] ], {'fields': ['message_unread', 'display_name']}],
+      success: function(response: any, status: any, jqXHR: any) {
+        console.log(response);
+      },
+      error: function(jqXHR: any, status: any, error: any) {
+        console.log('Error : ' + error );
+      }
     });
   }
 
