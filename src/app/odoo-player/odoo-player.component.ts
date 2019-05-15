@@ -43,6 +43,14 @@ export class OdooPlayerComponent implements OnInit {
     });
 
     this.odooConnect(this.server, this.db, this.user, this.pass);
+
+    // Noti Test
+    navigator.notification.confirm(
+      'Test msg',
+       this.notiDismissed,
+      'This is a Test - Odoo',
+      ['Ok', 'Cancel']
+    );
   }
 
   /* XML-RCP Odoo Connect */
@@ -111,6 +119,11 @@ export class OdooPlayerComponent implements OnInit {
         console.log('Error : ' + error );
       }
     });
+  }
+
+  /* Notification */
+  public notiDismissed(buttonIndex: any): void {
+    console.log('Notification Success ' +  buttonIndex);
   }
 
   public logOut(): void {
