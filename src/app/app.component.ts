@@ -63,6 +63,7 @@ export class AppComponent implements OnInit {
     this.odoo_db_value = window.localStorage.getItem('db');
     this.odoo_user_value = window.localStorage.getItem('user');
     this.odoo_pass_value = window.localStorage.getItem('pass');
+    cordova.plugins.backgroundMode.enable();  // Enable Background Mode for Notifications
   }
 
   public logIn(): void {
