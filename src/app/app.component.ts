@@ -13,10 +13,10 @@ declare var cordova: any;
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  @ViewChild('odoo_url') odoo_url: ElementRef;
-  @ViewChild('odoo_db') odoo_db: ElementRef;
-  @ViewChild('odoo_user') odoo_user: ElementRef;
-  @ViewChild('odoo_pass') odoo_pass: ElementRef;
+  @ViewChild('odoo_url', {static: true}) odoo_url: ElementRef;
+  @ViewChild('odoo_db', {static: true}) odoo_db: ElementRef;
+  @ViewChild('odoo_user', {static: true}) odoo_user: ElementRef;
+  @ViewChild('odoo_pass', {static: true}) odoo_pass: ElementRef;
   public odoo_url_value = '';
   public odoo_db_value = '';
   public odoo_user_value = '';
