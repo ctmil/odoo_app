@@ -5,14 +5,15 @@
     "description": "Odoo App for Community version.",
     "main": "index.js",
     "scripts": {
-	"build:android": "cordova-icon && cordova-splash && cordova build android",
-	"build:android_debug": "cordova build android --debug",
+        "build:android": "cordova-icon && cordova-splash && cordova build android",
+        "build:android_debug": "cordova build android --debug",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "Moldeo Interactive",
     "license": "Apache-2.0",
     "dependencies": {
         "cordova-android": "^7.1.4",
+        "cordova-plugin-background-mode": "^0.7.2",
         "cordova-plugin-network-information": "2.0.1",
         "cordova-plugin-splashscreen": "^5.0.2",
         "cordova-plugin-whitelist": "^1.3.3"

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { JsonService } from './services/json.service';
 import { timer } from 'rxjs';
@@ -12,11 +12,11 @@ declare var cordova: any;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
-  @ViewChild('odoo_url', {static: true}) odoo_url: ElementRef;
-  @ViewChild('odoo_db', {static: true}) odoo_db: ElementRef;
-  @ViewChild('odoo_user', {static: true}) odoo_user: ElementRef;
-  @ViewChild('odoo_pass', {static: true}) odoo_pass: ElementRef;
+export class AppComponent implements OnInit, AfterViewInit {
+  @ViewChild('odoo_url', {static: false}) odoo_url: ElementRef;
+  @ViewChild('odoo_db', {static: false}) odoo_db: ElementRef;
+  @ViewChild('odoo_user', {static: false}) odoo_user: ElementRef;
+  @ViewChild('odoo_pass', {static: false}) odoo_pass: ElementRef;
   public odoo_url_value = '';
   public odoo_db_value = '';
   public odoo_user_value = '';
@@ -54,7 +54,9 @@ export class AppComponent implements OnInit {
       console.log(navigator.connection.type);
       this_.network = true;
     });
+  }
 
+  public ngAfterViewInit(): void {
     this.logData();
   }
 
@@ -63,6 +65,15 @@ export class AppComponent implements OnInit {
     this.odoo_db_value = window.localStorage.getItem('db');
     this.odoo_user_value = window.localStorage.getItem('user');
     this.odoo_pass_value = window.localStorage.getItem('pass');
+
+    const secondsCounter = timer(500); // Pre-Loading
+
+    secondsCounter.subscribe( () => {
+      if (window.localStorage.getItem('url') && window.localStorage.getItem('db') &&
+      window.localStorage.getItem('user') && window.localStorage.getItem('pass')) {
+        this.validate();
+      }
+    });
   }
 
   public logIn(): void {
