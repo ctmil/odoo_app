@@ -12,7 +12,7 @@ declare var cordova: any;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
   @ViewChild('odoo_url', {static: false}) odoo_url: ElementRef;
   @ViewChild('odoo_db', {static: false}) odoo_db: ElementRef;
   @ViewChild('odoo_user', {static: false}) odoo_user: ElementRef;
@@ -54,9 +54,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       console.log(navigator.connection.type);
       this_.network = true;
     });
-  }
 
-  public ngAfterViewInit(): void {
     this.logData();
   }
 
