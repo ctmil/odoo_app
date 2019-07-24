@@ -2,7 +2,7 @@
 
 Odoo App for conect Odoo server on mobile, Android and iOS. Develop by [Moldeo Interactive](https://www.moldeointeractive.com.ar).
 
-Develop with Angular and Cordova.
+Develop with Angular and Cordova. For Odoo Server with just one DB.
 
 Developer: Ignacio Buioli
 
