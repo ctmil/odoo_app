@@ -12,7 +12,9 @@ Developer: Ignacio Buioli
 
 ## Known Issues
 
-* In certain cases an installation error may occur. It will display the "Odoo server need Odoo App Connector Module" alert. If the "odoo_app_connector" module is installed and configured on the Odoo server, it will be necessary to reinstall the App on the device. Error detected in: 
+* Alert "Odoo server need Odoo App Connector Module" will be displayed if "odoo_app_connector" module isn't installed on Odoo Server.
+* With Odoo 11 or 12, if the App log in successful but show a "Purple Screen" that never ends, it is because is necessary set up the header `X-Frame-Options`. 
+* In certain cases an installation error may occur. It will display the "Odoo server need Odoo App Connector Module" alert. If the "odoo_app_connector" module is installed and configured on the Odoo server, it will be necessary to reinstall the App on the device. This error was detected in: 
   * Xiaomi MiMix 2 (Android Pie)
   * Samsung Notes 8
 
