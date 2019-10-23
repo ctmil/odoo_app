@@ -1,5 +1,5 @@
 <div class="iframe-container" [ngClass]="{'no-network-iframe': network==false, 'network-iframe':network==true}">
-  <iframe #iframe [src]="url" frameborder="0" scrolling="yes"></iframe>
+  <object #iframe [data]="url" frameborder="0" scrolling="yes" type="text/html"></object>
 </div>
 
 <div class="msg" *ngIf="!network">
