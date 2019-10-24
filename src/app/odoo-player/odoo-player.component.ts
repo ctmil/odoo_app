@@ -27,18 +27,16 @@ export class OdooPlayerComponent implements OnInit {
   constructor(private sanitizer: DomSanitizer, private renderer: Renderer2) { }
 
   public ngOnInit(): void {
-    const this_ = this;
-
     this.renderer.listen('document', 'offline', () => { // Check OffLine listener
       console.log('Device is Offline - Odoo player');
       console.log(navigator.connection.type);
-      this_.network = false;
+      this.network = false;
     });
 
     this.renderer.listen('document', 'online', () => {  // Check OnLine listener
       console.log('Device is Online - Odoo player');
       console.log(navigator.connection.type);
-      this_.network = true;
+      this.network = true;
     });
   }
 
