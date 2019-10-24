@@ -41,10 +41,15 @@ iframe {
 .spinner {
     margin:20px auto 0 auto;
 }
+.mo-copy {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+}
 .pcp {
     margin-top:15px;
     font-size:11px;
-    color: #fefefe;
+    color: #303030;
     text-shadow: 0 1px 1px #010101;
     opacity:0.4;
 }

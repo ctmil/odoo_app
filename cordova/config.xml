@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.moldeointeractive.odooapp" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Odoo App</name>
+<widget id="com.moldeointeractive.odooappctmil" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Moldeo Interactive App</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Moldeo Interactive App - Odoo
     </description>
     <author email="info@moldeointeractive.com.ar" href="https://www.moldeointeractive.com.ar">
         Moldeo Interactive
@@ -18,6 +18,20 @@
     <allow-intent href="geo:*" />
     <platform name="android">
         <allow-intent href="market:*" />
+
+	<icon src="icon.png" density="ldpi" />
+        <icon src="icon.png" density="mdpi" />
+        <icon src="icon.png" density="hdpi" />
+        <icon src="icon.png" density="xhdpi" />
+
+        <splash src="screen.png" density="port-hdpi"/>
+        <splash src="screen.png" density="port-ldpi"/>
+        <splash src="screen.png" density="port-mdpi"/>
+        <splash src="screen.png" density="port-xhdpi"/>
+
+        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+                <application android:usesCleartextTraffic="true" />
+        </edit-config>
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />

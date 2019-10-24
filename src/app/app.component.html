@@ -1,12 +1,12 @@
 <section class="container odoo-header" *ngIf="odoo_login">
   <div class="row">
-    <div class="col-3"></div>
-    <div class="col-6">
+    <div class="col-1"></div>
+    <div class="col-10">
       <div class="box-responsive">
-          <img class="img-fluid" src="assets/odoo.webp">
+          <img class="img-fluid" src="assets/logo.png">
       </div>
     </div>
-    <div class="col-3"></div>
+    <div class="col-1"></div>
   </div>
 </section>
 
@@ -15,11 +15,11 @@
     <div class="col-12 text-center">
       <form>
         <mat-form-field class="box-responsive">
-          <input matInput placeholder="Odoo Server URL" [value]="odoo_url_value" required #odoo_url>
+          <input matInput placeholder="Odoo Server URL" [value]="odoo_url_value" disabled required #odoo_url>
           <mat-icon class="icon" color="primary" inline="true">insert_link</mat-icon>
         </mat-form-field>
         <mat-form-field class="box-responsive">
-          <input matInput placeholder="Data Base" [value]="odoo_db_value" required #odoo_db>
+          <input matInput placeholder="Data Base" [value]="odoo_db_value" disabled required #odoo_db>
           <mat-icon class="icon" color="primary" inline="true">cloud</mat-icon>
         </mat-form-field>
         <mat-form-field class="box-responsive">
@@ -46,8 +46,8 @@
     </div>
   </div>
 
-  <footer class="pcp text-center">
-        <span>&#112;&#111;&#119;&#101;&#114;&#101;&#100;
+  <footer class="mo-copy text-center">
+        <span class="pcp">&#112;&#111;&#119;&#101;&#114;&#101;&#100;
           &#032;&#098;&#121;
           &#032;&#077;&#111;&#108;&#100;&#101;&#111;
           &#032;&#073;&#110;&#116;&#101;&#114;&#097;&#099;&#116;&#105;&#118;&#101;</span>

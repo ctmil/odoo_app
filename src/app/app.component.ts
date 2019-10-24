@@ -17,8 +17,8 @@ export class AppComponent implements OnInit {
   @ViewChild('odoo_db', {static: false}) odoo_db: ElementRef;
   @ViewChild('odoo_user', {static: false}) odoo_user: ElementRef;
   @ViewChild('odoo_pass', {static: false}) odoo_pass: ElementRef;
-  public odoo_url_value = '';
-  public odoo_db_value = '';
+  public odoo_url_value = 'https://www.moldeointeractive.com.ar';
+  public odoo_db_value = 'odoo12ctmil';
   public odoo_user_value = '';
   public odoo_pass_value = '';
 
@@ -59,8 +59,6 @@ export class AppComponent implements OnInit {
   }
 
   public logData(): void {
-    this.odoo_url_value = window.localStorage.getItem('url');
-    this.odoo_db_value = window.localStorage.getItem('db');
     this.odoo_user_value = window.localStorage.getItem('user');
     this.odoo_pass_value = window.localStorage.getItem('pass');
 
@@ -87,8 +85,6 @@ export class AppComponent implements OnInit {
     this.odoo_user_value = user;
     this.odoo_pass_value = pass;
 
-    window.localStorage.setItem('url', server_url);
-    window.localStorage.setItem('db', db);
     window.localStorage.setItem('user', user);
     window.localStorage.setItem('pass', pass);
 
@@ -143,7 +139,7 @@ export class AppComponent implements OnInit {
         if (server_url.indexOf('http://') === -1 && server_url.indexOf('https://') === -1) {
           this.alert = 'Server URL need auth (http or https)';
         } else {
-          this.alert = 'Odoo Server need Oddo App Connector Module';
+          this.alert = 'Odoo Server needs Oddo App Connector Module';
         }
       });
     } else {
