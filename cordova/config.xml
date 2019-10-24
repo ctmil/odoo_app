@@ -18,6 +18,20 @@
     <allow-intent href="geo:*" />
     <platform name="android">
         <allow-intent href="market:*" />
+
+	<icon src="icon.png" density="ldpi" />
+        <icon src="icon.png" density="mdpi" />
+        <icon src="icon.png" density="hdpi" />
+        <icon src="icon.png" density="xhdpi" />
+
+        <splash src="screen.png" density="port-hdpi"/>
+        <splash src="screen.png" density="port-ldpi"/>
+        <splash src="screen.png" density="port-mdpi"/>
+        <splash src="screen.png" density="port-xhdpi"/>
+
+        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+                <application android:usesCleartextTraffic="true" />
+        </edit-config>
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
