@@ -15,13 +15,6 @@
 .alert_con{
     padding:0 10px;
 }
-iframe {
-    display: block; 
-    background: #74516a;
-    border: none;
-    height: 100vh;
-    width: 100vw;
-}
 .alert {
     margin-top:15px;
 }
@@ -43,6 +36,7 @@ iframe {
 }
 .mo-copy {
     position: absolute;
+    left:0;
     bottom: 10px;
     width: 100%;
 }

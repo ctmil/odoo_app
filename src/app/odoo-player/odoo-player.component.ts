@@ -23,6 +23,7 @@ export class OdooPlayerComponent implements OnInit {
   @Output() log = new EventEmitter();
 
   public network = true;
+  public loading = true;
 
   constructor(private sanitizer: DomSanitizer, private renderer: Renderer2) { }
 
