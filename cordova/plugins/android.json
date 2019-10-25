@@ -7,14 +7,14 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.moldeointeractive.odooapp"
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "com.moldeointeractive.odooappctmil"
     },
     "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "com.moldeointeractive.odooapp"
+      "PACKAGE_NAME": "com.moldeointeractive.odooappctmil"
     },
-    "cordova-plugin-network-information": {
-      "PACKAGE_NAME": "com.moldeointeractive.odooapp"
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.moldeointeractive.odooappctmil"
     }
   },
   "dependent_plugins": {}

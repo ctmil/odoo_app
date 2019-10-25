@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.moldeointeractive.odooappctmil" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.moldeointeractive.odooappctmil" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Moldeo Interactive App</name>
     <description>
         Moldeo Interactive App - Odoo
@@ -18,19 +18,16 @@
     <allow-intent href="geo:*" />
     <platform name="android">
         <allow-intent href="market:*" />
-
-	<icon src="icon.png" density="ldpi" />
-        <icon src="icon.png" density="mdpi" />
-        <icon src="icon.png" density="hdpi" />
-        <icon src="icon.png" density="xhdpi" />
-
-        <splash src="screen.png" density="port-hdpi"/>
-        <splash src="screen.png" density="port-ldpi"/>
-        <splash src="screen.png" density="port-mdpi"/>
-        <splash src="screen.png" density="port-xhdpi"/>
-
+        <icon density="ldpi" src="icon.png" />
+        <icon density="mdpi" src="icon.png" />
+        <icon density="hdpi" src="icon.png" />
+        <icon density="xhdpi" src="icon.png" />
+        <splash density="port-hdpi" src="screen.png" />
+        <splash density="port-ldpi" src="screen.png" />
+        <splash density="port-mdpi" src="screen.png" />
+        <splash density="port-xhdpi" src="screen.png" />
         <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
-                <application android:usesCleartextTraffic="true" />
+            <application android:usesCleartextTraffic="true" />
         </edit-config>
     </platform>
     <platform name="ios">
@@ -40,5 +37,4 @@
     <preference name="Orientation" value="portrait" />
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
     <plugin name="cordova-plugin-network-information" spec="2.0.1" />
-    <engine name="android" spec="^7.1.4" />
 </widget>

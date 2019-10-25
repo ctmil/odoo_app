@@ -12,7 +12,7 @@
     "author": "Moldeo Interactive",
     "license": "Apache-2.0",
     "dependencies": {
-        "cordova-android": "^7.1.4",
+        "cordova-android": "^8.1.0",
         "cordova-plugin-background-mode": "^0.7.2",
         "cordova-plugin-network-information": "2.0.1",
         "cordova-plugin-splashscreen": "^5.0.2",
